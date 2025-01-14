@@ -16,7 +16,7 @@ on:
 jobs:
   build:
     #runs-on: ubuntu-24.04
-    runs-on: debian bookworm
+    runs-on: ubuntu-latest
     
     steps:
     - name: Build Armbian
