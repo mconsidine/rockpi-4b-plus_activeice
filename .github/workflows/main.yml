@@ -15,10 +15,11 @@ on:
   
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    #runs-on: ubuntu-24.04
+    runs-on: debian bookworm
     
     steps:
-    - name: Bulid Armbian
+    - name: Build Armbian
       run: |
         git clone https://github.com/armbian/build --depth 1
         wget https://raw.githubusercontent.com/ActiveIce/rockpi-4b-plus/master/fix-rtl8211f.patch
@@ -26,7 +27,14 @@ jobs:
         cp fix-rtl8211f.patch build/patch/kernel/
         cp rockpi-4b-plus.csc build/config/boards/
         cd build
-        ./compile.sh BOARD=rockpi-4b-plus BRANCH=edge RELEASE=jammy BUILD_MINIMAL=no BUILD_DESKTOP=no KERNEL_CONFIGURE=no INSTALL_HEADERS=yes COMPRESS_OUTPUTIMAGE=sha,gpg,img
+        ./compile.sh BOARD=rockpi-4b-plus \
+          BRANCH=current \ #edge
+          RELEASE=bookworm \ #jammy
+          BUILD_MINIMAL=no \
+          BUILD_DESKTOP=no \
+          KERNEL_CONFIGURE=no \
+          INSTALL_HEADERS=yes \
+          COMPRESS_OUTPUTIMAGE=xz #sha,gpg,img
         
     - name: Upload Armbian
       uses: actions/upload-artifact@main
