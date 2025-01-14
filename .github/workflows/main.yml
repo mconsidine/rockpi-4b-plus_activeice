@@ -1,16 +1,18 @@
 name: auto build engine
 
 on: 
-  release:
-    types: [published]
-  #schedule:
-  #  - cron: "0 16 * * *"
-  push:
-    branches: 
-      - master
-  watch:
-    types: [started]
-
+  #release:
+  #  types: [published]
+  ##schedule:
+  ##  - cron: "0 16 * * *"
+  #push:
+  #  branches: 
+  #    - master
+  #watch:
+  #  types: [started]
+  
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-24.04
