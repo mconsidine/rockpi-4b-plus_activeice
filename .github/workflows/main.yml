@@ -28,13 +28,13 @@ jobs:
         cp rockpi-4b-plus.csc build/config/boards/
         cd build
         ./compile.sh BOARD=rockpi-4b-plus \
-          BRANCH=current \ #edge
-          RELEASE=bookworm \ #jammy
+          BRANCH=current \
+          RELEASE=bookworm \
           BUILD_MINIMAL=no \
           BUILD_DESKTOP=no \
           KERNEL_CONFIGURE=no \
           INSTALL_HEADERS=yes \
-          COMPRESS_OUTPUTIMAGE=xz #sha,gpg,img
+          COMPRESS_OUTPUTIMAGE=xz
         
     - name: Upload Armbian
       uses: actions/upload-artifact@main
